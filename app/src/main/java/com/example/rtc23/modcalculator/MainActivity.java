@@ -58,9 +58,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String number;
+    Boolean back = false;
     Button.OnClickListener listner = new Button.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (back){
+                textView.setText("");
+                back = false;
+            }
+
+
             switch (v.getId()){
                 case R.id.btn_1:
                     Log.e("btn_1","call");
@@ -130,12 +138,18 @@ public class MainActivity extends AppCompatActivity {
                     textView.setText(textView.getText()+"%");
                     break;
                 case R.id.btn_delete:
+                    //debug
+                    if(textView.getText().toString().equals("")){
+                        break;
+                    }
                     Log.e("btn_delete","call");
                     number = textView.getText().toString();
                     textView.setText(number.substring(0,number.length()-1));
                     break;
                 case R.id.btn_answer:
-                    m.get_answer(number);
+                    String answer = m.get_answer(textView.getText().toString());
+                    textView.setText(textView.getText().toString()+" = "+ answer);
+                    back = true;
                     break;
                 default:
                     break;
