@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn0,btnDelete,btnMod;
+    Button btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btn0,btnDelete,btnMod,btnAnswer;
     TextView textView;
 
 
@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         btnDelete.setOnLongClickListener(listner_long);
 
+
+        btnAnswer = findViewById(R.id.btn_answer);
+        btnAnswer.setOnClickListener(listner2);
 
         textView = findViewById(R.id.textView);
     }
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    Moudule m = new Moudule();
 
     Button.OnClickListener listner2 = new Button.OnClickListener() {
         @Override
@@ -129,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("btn_delete","call");
                     number = textView.getText().toString();
                     textView.setText(number.substring(0,number.length()-1));
+                    break;
+                case R.id.btn_answer:
+                    m.get_answer(number);
                     break;
                 default:
                     break;
